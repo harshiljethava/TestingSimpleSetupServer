@@ -280,6 +280,12 @@ def site_package_check(self,stype):
         if not SSSAptGet.is_installed(self,'php7.0-fpm'):
             apt_packages = apt_packages + SSSVariables.sss_php
 
+    if stype in ['phpmyadmin']:
+        Log.debug(self,"Setting apt_packages varible for phpMyAdmin")
+
+        if not SSSAptGet.is_installed(self,'phpmyadmin'):
+            apt_packages=apt_packages+SSSVariables.sss_pma
+
     if stype in ['mysql']:
         Log.debug(self, "Setting apt_packages variable for MySQL")
         if not SSSShellExec.cmd_exec(self, "mysqladmin ping"):

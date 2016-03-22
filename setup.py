@@ -84,7 +84,7 @@ setup(name='sss',
                   ('/usr/lib/sss/templates', templates),
 
                   ('/etc/bash_completion.d/',['config/bash_completion.d/sss_auto.rc']),
-                  ('/usr/share/man/man8/', ['docs/sss.8']),('/var/www/2222/db/')],
+                  ('/usr/share/man/man8/', ['docs/sss.8']),
       setup_requires=[],
       entry_points="""
           [console_scripts]

@@ -137,6 +137,11 @@ class SSSStackController(CementBaseController):
             Log.debug(self, 'Adding ppa for PHP')
             SSSRepo.add(self, ppa=SSSVariables.sss_php_repo)
 
+        if set(SSSVariables.sss_pma).issubset(set(apt_packages)):
+            Log.info(self,"Adding repository for phpMyAdmin ,please wait...")
+            Log.debug(self,"Adding ppa for phpMyAdmin")
+            SSSRepo.add(self,ppa=SSSVariables.sss_pma)
+
     @expose(hide=True)
     def post_pref(self, apt_packages, packages):
         """Post activity after installation of packages"""
