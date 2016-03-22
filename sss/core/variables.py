@@ -61,7 +61,7 @@ class SSSVariables():
     sss_apache_repo = "ppa:ondrej/apache2"
 
     #phpMyAdmin
-    sss_pma=['phpmyadmin']
+    sss_pma=['pma']
     sss_pma_repo="ppa:nijel/phpmyadmin"
 
     # MySQL hostname
@@ -97,11 +97,11 @@ class SSSVariables():
 
     # phpMyAdmin repo and packages
     if sss_platform_distro == 'ubuntu':
-        sss_pma_repo = ("deb deb http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu"
+        sss_pma_repo = ("deb http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu"
                          "{codename} main"
                          .format(codename=sss_platform_codename))
 
-    sss_pma = ["phpmyadmin", "pma"]
+    sss_pma = ["pma"]
 
 
     # Repo path

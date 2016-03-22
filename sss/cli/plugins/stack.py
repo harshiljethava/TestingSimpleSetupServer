@@ -52,7 +52,7 @@ class SSSStackController(CementBaseController):
                 dict(help='Install Apache2 stack', action='store_true')),
             (['--php'],
                 dict(help='Install PHP stack', action='store_true')),
-            (['--phpmyadmin'],
+            (['--pma'],
                 dict(help='Install phpMyAdmin stack', action='store_true')),
             (['--mysql'],
                 dict(help='Install MySQL stack', action='store_true')),
