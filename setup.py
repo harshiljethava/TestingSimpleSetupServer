@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 conf = []
 templates = []
 
-long_description = '''Simple Setup Server is the commandline tool to manage your Linux Server'''
+long_description = '''Simple Setup Server(SSS)is the commandline tool to manage your Linux Server'''
 
 for name in glob.glob('config/plugins.d/*.conf'):
     conf.insert(1, name)

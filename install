@@ -129,7 +129,7 @@ function secure_sss_db()
 }
 
 
-# Install Simple Setup Server 
+# Install Simple Setup Server
 function sss_install()
 {
     # Remove old clone of Simple Setup Server (sss) if any
@@ -151,8 +151,8 @@ function sss_install()
 
 
 # Update Simple Setup Server configuration
-# Remove Old Simple Setup Server  
-# Function for Future release 
+# Remove Old Simple Setup Server
+# Function for Future release
 
 function sss_update()
 {
@@ -172,7 +172,7 @@ function sss_git_init()
         git add -A .
         git commit -am "Updated Apache2" > /dev/null
     fi
-    
+
     # Simple Setup Server under git version control
 
     if [ -d /etc/sss ];then
@@ -186,7 +186,7 @@ function sss_git_init()
 
 }
 
-# Install Simple Setup Server 
+# Install Simple Setup Server
 
 sss_install_dep | tee -ai $sss_install_log
 # sss_update_latest | tee -ai $sss_install_log
@@ -197,4 +197,4 @@ sss_git_init | tee -ai $sss_install_log
 
 
 echo
-sss_lib_echo "Simple Setup Server (sss) installed/updated successfully"
+sss_lib_echo "Harshil Simple Setup Server (sss) installed/updated successfully"
