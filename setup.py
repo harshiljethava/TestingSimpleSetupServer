@@ -79,16 +79,16 @@ setup(name='sss',
           'sh',
           'sqlalchemy',
           ],
-      data_files=[('/etc/sss', ['config/sss.conf']),
+     data_files=[('/etc/sss', ['config/sss.conf']),
                   ('/etc/sss/plugins.d', conf),
                   ('/usr/lib/sss/templates', templates),
-
-                  ('/etc/bash_completion.d/',['config/bash_completion.d/sss_auto.rc']),
-                  ('/usr/share/man/man8/', ['docs/sss.8']),
+                  ('/etc/bash_completion.d/',
+                   ['config/bash_completion.d/sss_auto.rc']),
+                  ('/usr/share/man/man8/', ['docs/sss.8'])],
       setup_requires=[],
       entry_points="""
           [console_scripts]
-          sss = sss.cli.main:mainzz
+          sss = sss.cli.main:main
       """,
       namespace_packages=[],
       )
