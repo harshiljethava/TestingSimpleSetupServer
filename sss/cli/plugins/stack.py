@@ -69,16 +69,16 @@ class SSSStackController(CementBaseController):
 
         if set(SSSVariables.sss_pma).issubset(set(apt_packages)):
             Log.info(self,"Adding repository for phpMyAdmin ,please wait...")
-            pma_pref = ("def http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu trusty main")
+            pma_pref = ("deb http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu trusty main ")
 
-            with open('/etc/apt/sources.list.d/'
-                      'pma.pref', 'w') as pma_pref_file:
+            with open('/etc/apt/source.list.d/'
+                      'pma.list', 'w') as pma_pref_file:
                 pma_pref_file.write(pma_pref)
 
             SSSRepo.add(self, repo_url=SSSVariables.sss_pma_repo)
             Log.debug(self, 'Adding key for {0}'
                         .format(SSSVariables.sss_pma_repo))
-            SSSRepo.add_key(self, '06ED541C',
+            SSSRepo.add_key(self,'06ED541C',
                                keyserver="keyserver.ubuntu.com")
             chars = ''.join(random.sample(string.ascii_letters, 8))
 
