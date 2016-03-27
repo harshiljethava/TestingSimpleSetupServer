@@ -61,7 +61,7 @@ class SSSVariables():
     sss_apache_repo = "ppa:ondrej/apache2"
 
     #phpMyAdmin
-    sss_pma=['pma']
+    sss_pma=["phpmyadmin"]
     sss_pma_repo="ppa:nijel/phpmyadmin"
 
     # MySQL hostname
