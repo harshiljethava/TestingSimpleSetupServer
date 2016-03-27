@@ -67,8 +67,11 @@ class SSSStackController(CementBaseController):
     def pre_pref(self,apt_packages):
         """Pre settings to do before installation packages"""
 
-        if set(SSSVariables.sss_pma).issubset(set(apt_packages)):
+        if  not set(SSSVariables.sss_pma).issubset(set(apt_packages)):
             Log.info(self,"Adding repository for phpMyAdmin ,please wait...")
+
+            Log.debug(self,"Adding ppa for phpMyAdmin")
+            SSSRepo.add(self,ppa=SSSVariables.sss_pma)
             pma_pref = ("deb http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu trusty main ")
 
             with open('/etc/apt/source.list.d/'
@@ -82,8 +85,7 @@ class SSSStackController(CementBaseController):
                                keyserver="keyserver.ubuntu.com")
             chars = ''.join(random.sample(string.ascii_letters, 8))
 
-            Log.debug(self,"Adding ppa for phpMyAdmin")
-            SSSRepo.add(self,ppa=SSSVariables.sss_pma)
+
 
 
         if set(SSSVariables.sss_mysql).issubset(set(apt_packages)):
