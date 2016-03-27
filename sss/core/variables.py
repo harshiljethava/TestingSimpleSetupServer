@@ -97,10 +97,7 @@ class SSSVariables():
 
     # phpMyAdmin repo and packages
     if sss_platform_distro == 'ubuntu':
-        sss_pma_repo = ("deb http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu"
-                         "{codename} main"
-                         .format(codename=sss_platform_codename))
-
+        sss_pma_repo = ("deb http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu trusty main")
     sss_pma = ["pma"]
 
 

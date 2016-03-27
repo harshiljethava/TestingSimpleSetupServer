@@ -67,6 +67,25 @@ class SSSStackController(CementBaseController):
     def pre_pref(self,apt_packages):
         """Pre settings to do before installation packages"""
 
+        if set(SSSVariables.sss_pma).issubset(set(apt_packages)):
+            Log.info(self,"Adding repository for phpMyAdmin ,please wait...")
+            pma_pref = ("def origin http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu trusty main")
+
+            with open('/etc/apt/sources.list.d'
+                      'phpmyadmin.pref', 'w') as pma_pref_file:
+                pma_pref_file.write(pma_pref)
+
+            SSSRepo.add(self, repo_url=SSSVariables.sss_pma_repo)
+            Log.debug(self, 'Adding key for {0}'
+                        .format(SSSVariables.sss_pma_repo))
+            SSSRepo.add_key(self, '06ED541C',
+                               keyserver="keyserver.ubuntu.com")
+            chars = ''.join(random.sample(string.ascii_letters, 8))
+
+            Log.debug(self,"Adding ppa for phpMyAdmin")
+            SSSRepo.add(self,ppa=SSSVariables.sss_pma)
+
+
         if set(SSSVariables.sss_mysql).issubset(set(apt_packages)):
             Log.info(self,"Adding repository for MySQL, please wait... ")
             mysql_pref = ("Package: *\nPin: origin sfo1.mirrors.digitalocean.com"
@@ -137,10 +156,6 @@ class SSSStackController(CementBaseController):
             Log.debug(self, 'Adding ppa for PHP')
             SSSRepo.add(self, ppa=SSSVariables.sss_php_repo)
 
-        if set(SSSVariables.sss_pma).issubset(set(apt_packages)):
-            Log.info(self,"Adding repository for phpMyAdmin ,please wait...")
-            Log.debug(self,"Adding ppa for phpMyAdmin")
-            SSSRepo.add(self,ppa=SSSVariables.sss_pma)
 
     @expose(hide=True)
     def post_pref(self, apt_packages, packages):

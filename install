@@ -196,5 +196,4 @@ sss_install | tee -ai $sss_INSTALL_LOG
 sss_git_init | tee -ai $sss_install_log
 
 
-echo
-sss_lib_echo "Harshil Simple Setup Server (sss) installed/updated successfully"
+echo sss_lib_echo "Harshil Simple Setup Server (sss) installed/updated successfully"
