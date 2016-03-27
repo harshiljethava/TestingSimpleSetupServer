@@ -141,7 +141,7 @@ function sss_install()
         sss_branch=master
     fi
 
-    git clone -b $sss_branch https://github.com/harshiljethava/TestingSimpleSetupServer.git /tmp/setupserver --quiet > /dev/null \
+    git clone -b $sss_branch https://github.com/serversetup/SetupServer.git /tmp/setupserver --quiet > /dev/null \
     || sss_lib_error "Unable to clone Simple Setup Server , exit status" $?
 
     cd /tmp/setupserver
