@@ -61,8 +61,9 @@ class SSSVariables():
     sss_apache_repo = "ppa:ondrej/apache2"
 
     #phpMyAdmin
-    sss_pma=["phpmyadmin"]
+    sss_pma=["pma"]
     sss_pma_repo="ppa:nijel/phpmyadmin"
+    sss_pma_repo_url = ("deb http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu trusty main")
 
     # MySQL hostname
     sss_mysql_host = ""
@@ -94,13 +95,12 @@ class SSSVariables():
                          .format(codename=sss_platform_codename))
 
     sss_mysql = ["mariadb-server", "percona-toolkit"]
-
+    """
     # phpMyAdmin repo and packages
     if sss_platform_distro == 'ubuntu':
-        sss_pma_repo = ("deb http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu trusty main")
+        sss_pma_repo_url = ("deb http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu trusty main")
     sss_pma = ["pma"]
-
-
+    """
     # Repo path
     sss_repo_file = "ss-repo.list"
     sss_repo_file_path = ("/etc/apt/sources.list.d/" + sss_repo_file)

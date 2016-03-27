@@ -46,13 +46,11 @@ class SSSStackController(CementBaseController):
         arguments = [
             (['--all'],
                 dict(help='Install all stack', action='store_true')),
-            (['--web'],
-                dict(help='Install web stack', action='store_true')),
             (['--apache2'],
                 dict(help='Install Apache2 stack', action='store_true')),
             (['--php'],
                 dict(help='Install PHP stack', action='store_true')),
-            (['--phpmyadmin'],
+            (['--pma'],
                 dict(help='Install phpMyAdmin stack', action='store_true')),
             (['--mysql'],
                 dict(help='Install MySQL stack', action='store_true')),
@@ -70,15 +68,13 @@ class SSSStackController(CementBaseController):
         if  not set(SSSVariables.sss_pma).issubset(set(apt_packages)):
             Log.info(self,"Adding repository for phpMyAdmin ,please wait...")
 
-            Log.debug(self,"Adding ppa for phpMyAdmin")
-            SSSRepo.add(self,ppa=SSSVariables.sss_pma)
             pma_pref = ("deb http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu trusty main ")
-
             with open('/etc/apt/source.list.d/'
                       'pma.list', 'w') as pma_pref_file:
                 pma_pref_file.write(pma_pref)
-
-            SSSRepo.add(self, repo_url=SSSVariables.sss_pma_repo)
+            Log.debug(self,"Adding ppa for phpMyAdmin")
+            SSSRepo.add(self,ppa=SSSVariables.sss_pma_repo)
+            SSSRepo.add(self, repo_url=SSSVariables.sss_pma_repo_url)
             Log.debug(self, 'Adding key for {0}'
                         .format(SSSVariables.sss_pma_repo))
             SSSRepo.add_key(self,'06ED541C',
