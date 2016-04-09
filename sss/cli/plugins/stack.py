@@ -46,6 +46,8 @@ class SSSStackController(CementBaseController):
         arguments = [
             (['--all'],
                 dict(help='Install all stack', action='store_true')),
+            (['--web'],
+                dict(help='Install web stack', action='store_true')),
             (['--apache2'],
                 dict(help='Install Apache2 stack', action='store_true')),
             (['--php'],
@@ -65,23 +67,23 @@ class SSSStackController(CementBaseController):
     def pre_pref(self,apt_packages):
         """Pre settings to do before installation packages"""
 
-        if  set(SSSVariables.sss_pma).issubset(set(apt_packages)):
-            """Log.info(self,"Adding repository for phpMyAdmin ,please wait...")
+        if set(SSSVariables.sss_pma).issubset(set(apt_packages)):
+            Log.info(self,"Adding repository for phpMyAdmin ,please wait...")
+            pma_pref = ("def origin http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu trusty main")
 
-            pma_pref = ("deb http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu trusty main ")
-            with open('/etc/apt/source.list.d/'
-                      'pma.list', 'w') as pma_pref_file:
+            with open('/etc/apt/sources.list.d'
+                      'phpmyadmin.pref', 'w') as pma_pref_file:
                 pma_pref_file.write(pma_pref)
-            Log.debug(self,"Adding ppa for phpMyAdmin")
-            SSSRepo.add(self,ppa=SSSVariables.sss_pma_repo)
-            SSSRepo.add(self, repo_url=SSSVariables.sss_pma_repo_url)
+
+            SSSRepo.add(self, repo_url=SSSVariables.sss_pma_repo)
             Log.debug(self, 'Adding key for {0}'
                         .format(SSSVariables.sss_pma_repo))
-            SSSRepo.add_key(self,'06ED541C',
+            SSSRepo.add_key(self, '06ED541C',
                                keyserver="keyserver.ubuntu.com")
             chars = ''.join(random.sample(string.ascii_letters, 8))
 
-            """
+            Log.debug(self,"Adding ppa for phpMyAdmin")
+            SSSRepo.add(self,ppa=SSSVariables.sss_pma)
 
 
         if set(SSSVariables.sss_mysql).issubset(set(apt_packages)):
@@ -388,33 +390,21 @@ class SSSStackController(CementBaseController):
                 self.app.pargs.web = True
                 self.app.pargs.apache2 = True
                 self.app.pargs.php = True
-                #self.app.pargs.pma=True
                 self.app.pargs.mysql = True
 
             if self.app.pargs.all:
                 self.app.pargs.web = True
                 self.app.pargs.apache2 = True
                 self.app.pargs.php = True
-                #self.app.pargs.pma=True
                 #self.app.pargs.mysql = True
 
             if self.app.pargs.web:
                 self.app.pargs.apache2 = True
-                #self.app.pargs.pma=True
                 self.app.pargs.php = True
                 #self.app.pargs.mysql = True
                 #self.app.pargs.wpcli = True
                 #self.app.pargs.postfix = True
 
-            """if self.app.pargs.apache2:
-                Log.debug(self, "Setting apt_packages variable for phpMyAdmin")
-                if not SSSAptGet.is_installed(self,'pma'):
-                    apt_packages = apt_packages + SSSVariables.sss_pma
-
-                else :
-                    Log.debug(self, "phpMyAdmin already installed")
-                    Log.info(self, "phpMyAdmin already installed")
-            """
             if self.app.pargs.apache2:
                 Log.debug(self, "Setting apt_packages variable for Apache2")
                 if not SSSAptGet.is_installed(self,'apache2'):
