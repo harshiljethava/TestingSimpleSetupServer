@@ -253,6 +253,18 @@ class SSSStackController(CementBaseController):
                     self.msg = (self.msg + ["HTTP Auth User Name: SSS"]
                                 + ["HTTP Auth Password : {0}".format(passwd)])
 
+            #phpmyadmin config
+            if set(SSSVariables.sss_phpmyadmin).issubset(set(apt_packages)):
+                if not (os.path.isfile('/etc/apache2/apache2.conf')):
+                    data = dict(webroot=SSSVariables.sss_webroot)
+                    php_conf = ("Include /etc/phpmyadmin/apache.conf")
+
+                    with open('/etc/apache2/apache.conf', 'a') as php_conf_file:
+                        php_conf_file.write(php_conf)
+
+
+
+
             if set(SSSVariables.sss_php).issubset(set(apt_packages)):
                 # Create log directories
                 if not os.path.exists('/var/log/php/7.0/'):
