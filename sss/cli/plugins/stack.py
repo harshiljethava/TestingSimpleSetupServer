@@ -75,7 +75,7 @@ class SSSStackController(CementBaseController):
                       'phpmyadmin.pref', 'w') as pma_pref_file:
                 pma_pref_file.write(pma_pref)
 
-            SSSRepo.add(self, repo_url=SSSVariables.sss_pma_repo)
+            SSSRepo.add(self, repo_url=SSSVariables.sss_pma_repo_url)
             Log.debug(self, 'Adding key for {0}'
                         .format(SSSVariables.sss_pma_repo))
             SSSRepo.add_key(self, '06ED541C',
