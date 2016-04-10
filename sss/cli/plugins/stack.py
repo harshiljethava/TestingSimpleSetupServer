@@ -259,7 +259,7 @@ class SSSStackController(CementBaseController):
                     data = dict(webroot=SSSVariables.sss_webroot)
                     php_conf = ("Include /etc/phpmyadmin/apache.conf")
 
-                    with open('/etc/apache2/apache.conf', 'a') as php_conf_file:
+                    with open('/etc/apache2/apache2.conf', 'a') as php_conf_file:
                         php_conf_file.write(php_conf)
 
 
