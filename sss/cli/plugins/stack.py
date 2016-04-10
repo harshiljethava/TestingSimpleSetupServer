@@ -183,8 +183,8 @@ class SSSStackController(CementBaseController):
                     sss_apache.close()
 
                     passwd = ''.join([random.choice
-                                     (string.ascii_letters + string.digits)
-                                     for n in range(6)])
+                                     (string.ascii_letters + string.digits+string.punctuation)
+                                     for n in range(8)])
 
                     try:
                         SSSShellExec.cmd_exec(self, "printf \"SSS:"
@@ -255,12 +255,20 @@ class SSSStackController(CementBaseController):
 
             #phpmyadmin config
             if set(SSSVariables.sss_pma).issubset(set(apt_packages)):
-                if not (os.path.isfile('/etc/apache2/apache2.conf')):
+                """if not (os.path.isfile('/etc/apache2/apache2.conf')):
                     data = dict(webroot=SSSVariables.sss_webroot)
                     php_conf = ("Include /etc/phpmyadmin/apache.conf")
 
                     with open('/etc/apache2/apache2.conf', 'a') as php_conf_file:
                         php_conf_file.write(php_conf)
+                """
+
+                SSSFileUtils.create_symlink(self, ['/usr/
+                                                    'share/'
+                                                    'phpmyadmin/apache.conf',
+                                                    '/etc/'
+                                                    'apache2'
+                                                    '/apache2.conf'])
 
 
 
