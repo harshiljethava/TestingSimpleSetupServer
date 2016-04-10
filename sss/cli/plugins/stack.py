@@ -52,7 +52,7 @@ class SSSStackController(CementBaseController):
                 dict(help='Install Apache2 stack', action='store_true')),
             (['--php'],
                 dict(help='Install PHP stack', action='store_true')),
-            (['--pma'],
+            (['--phpmyadmin'],
                 dict(help='Install phpMyAdmin stack', action='store_true')),
             (['--mysql'],
                 dict(help='Install MySQL stack', action='store_true')),
@@ -390,7 +390,7 @@ class SSSStackController(CementBaseController):
                 self.app.pargs.apache2 = True
                 self.app.pargs.php = True
                 self.app.pargs.mysql = True
-                self.app.pargs.pma = True
+                self.app.pargs.phpmyadmin = True
 
 
             if self.app.pargs.all:
@@ -398,7 +398,7 @@ class SSSStackController(CementBaseController):
                 self.app.pargs.apache2 = True
                 self.app.pargs.php = True
                 self.app.pargs.mysql = True
-                self.app.pargs.pma = True
+                self.app.pargs.phpmyadmin = True
 
             if self.app.pargs.web:
                 self.app.pargs.apache2 = True
