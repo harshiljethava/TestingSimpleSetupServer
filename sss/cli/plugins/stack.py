@@ -83,7 +83,7 @@ class SSSStackController(CementBaseController):
             chars = ''.join(random.sample(string.ascii_letters, 8))
 
             Log.debug(self,"Adding ppa for phpMyAdmin")
-            SSSRepo.add(self,ppa=SSSVariables.sss_pma)
+            SSSRepo.add(self,ppa=SSSVariables.sss_pma_repo)
 
 
         if set(SSSVariables.sss_mysql).issubset(set(apt_packages)):
