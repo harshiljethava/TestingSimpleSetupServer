@@ -184,7 +184,7 @@ class SSSStackController(CementBaseController):
 
                     passwd = ''.join([random.choice
                                      (string.ascii_letters + string.digits+string.punctuation)
-                                     for n in range(8)])
+                                     for n in range(10)])
 
                     try:
                         SSSShellExec.cmd_exec(self, "printf \"SSS:"
@@ -262,7 +262,12 @@ class SSSStackController(CementBaseController):
                     with open('/etc/apache2/apache2.conf', 'a') as php_conf_file:
                         php_conf_file.write(php_conf)
                 """
-                SSSFileUtils.create_symlink(self, ['/etc/phpmyadmin/apache.conf','/etc/apache2/apache2.conf'])
+                """SSSFileUtils.create_symlink(self, ['/etc/phpmyadmin/apache.conf','/etc/apache2/apache2.conf'])"""
+
+                sss_php = open('/etc/apache2/apache2.conf',encoding='utf-8', mode='a')
+                self.app.render((data), 'Include /etc/phpmyadmin/apache.conf',
+                                out=sss_php)
+                sss_php.close()
 
             if set(SSSVariables.sss_php).issubset(set(apt_packages)):
                 # Create log directories
