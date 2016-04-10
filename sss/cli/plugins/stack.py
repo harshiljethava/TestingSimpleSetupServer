@@ -425,7 +425,7 @@ class SSSStackController(CementBaseController):
                     Log.debug(self, "PHP already installed")
                     Log.info(self, "PHP already installed")
 
-            if self.app.pargs.pma:
+            if self.app.pargs.phpmyadmin:
                 Log.debug(self,"Setting apt_packages variable for PhpMyadmin")
                 if not SSSAptGet.is_installed(self,'phpmyadmin'):
                     apt_packages= apt_packages + SSSVariables.sss_pma
