@@ -71,11 +71,10 @@ class SSSStackController(CementBaseController):
             Log.info(self,"Adding repository for phpMyAdmin ,please wait...")
             pma_pref = ("def origin http://ppa.launchpad.net/nijel/phpmyadmin/ubuntu trusty main")
 
-            with open('/etc/apt/sources.list.d'
-                      'phpmyadmin.pref', 'w') as pma_pref_file:
+            with open('/etc/apt/sources.list.d', 'w') as pma_pref_file:
                 pma_pref_file.write(pma_pref)
+            """SSSRepo.add(self, repo_url=SSSVariables.sss_pma_repo_url)"""
 
-            SSSRepo.add(self, repo_url=SSSVariables.sss_pma_repo_url)
             Log.debug(self, 'Adding key for {0}'
                         .format(SSSVariables.sss_pma_repo))
             SSSRepo.add_key(self, '06ED541C',
@@ -391,17 +390,20 @@ class SSSStackController(CementBaseController):
                 self.app.pargs.apache2 = True
                 self.app.pargs.php = True
                 self.app.pargs.mysql = True
+                self.app.pargs.pma = True
+
 
             if self.app.pargs.all:
                 self.app.pargs.web = True
                 self.app.pargs.apache2 = True
                 self.app.pargs.php = True
-                #self.app.pargs.mysql = True
+                self.app.pargs.mysql = True
+                self.app.pargs.pma = True
 
             if self.app.pargs.web:
                 self.app.pargs.apache2 = True
                 self.app.pargs.php = True
-                #self.app.pargs.mysql = True
+                self.app.pargs.mysql = True
                 #self.app.pargs.wpcli = True
                 #self.app.pargs.postfix = True
 
@@ -426,7 +428,7 @@ class SSSStackController(CementBaseController):
             if self.app.pargs.pma:
                 Log.debug(self,"Setting apt_packages variable for PhpMyadmin")
                 if not SSSAptGet.is_installed(self,'pma'):
-                    apt_packages= apt_packages +SSSVariables.sss_pma
+                    apt_packages= apt_packages + SSSVariables.sss_pma
                 else:
                     Log.debug(self,"PhpMyadmin already installed")
                     Log.info(self,"PhpMyadmin already installed")
