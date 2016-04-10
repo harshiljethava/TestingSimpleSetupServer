@@ -262,7 +262,7 @@ class SSSStackController(CementBaseController):
                     with open('/etc/apache2/apache2.conf', 'a') as php_conf_file:
                         php_conf_file.write(php_conf)
                 """
-                SSSFileUtils.create_symlink(self, ['/usr/share/phpmyadmin/apache.conf','/etc/apache2/apache2.conf'])
+                SSSFileUtils.create_symlink(self, ['/etc/phpmyadmin/apache.conf','/etc/apache2/apache2.conf'])
 
             if set(SSSVariables.sss_php).issubset(set(apt_packages)):
                 # Create log directories
