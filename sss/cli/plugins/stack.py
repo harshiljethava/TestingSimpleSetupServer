@@ -254,7 +254,7 @@ class SSSStackController(CementBaseController):
                                 + ["HTTP Auth Password : {0}".format(passwd)])
 
             #phpmyadmin config
-            if set(SSSVariables.sss_phpmyadmin).issubset(set(apt_packages)):
+            if set(SSSVariables.sss_pma).issubset(set(apt_packages)):
                 if not (os.path.isfile('/etc/apache2/apache2.conf')):
                     data = dict(webroot=SSSVariables.sss_webroot)
                     php_conf = ("Include /etc/phpmyadmin/apache.conf")
