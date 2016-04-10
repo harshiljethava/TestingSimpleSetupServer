@@ -414,6 +414,7 @@ class SSSStackController(CementBaseController):
                     Log.debug(self, "Apache2 already installed")
                     Log.info(self, "Apache2 already installed")
 
+
             if self.app.pargs.php:
                 Log.debug(self,"Setting apt_packages variable for PHP")
                 if not SSSAptGet.is_installed(self,'php7.0-fpm'):
@@ -421,6 +422,14 @@ class SSSStackController(CementBaseController):
                 else:
                     Log.debug(self, "PHP already installed")
                     Log.info(self, "PHP already installed")
+
+            if self.app.pargs.pma:
+                Log.debug(self,"Setting apt_packages variable for PhpMyadmin")
+                if not SSSAptGet.is_installed(self,'pma')
+                    apt_packages= apt_packages +SSSVariables.sss_pma
+                else:
+                    Log.debug(self,"PhpMyadmin already installed")
+                    Log.info(self,"PhpMyadmin already installed")
 
             if self.app.pargs.mysql:
                 Log.debug(self,"Setting apt_packages variable for MySQL")
